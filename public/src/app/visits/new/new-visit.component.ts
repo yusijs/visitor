@@ -36,7 +36,11 @@ export class NewVisitComponent implements OnInit {
                 _id: [this.visitor._id],
                 company: [null],
                 confidentiality: [false],
-                attachments: this._formBuilder.array([])
+                attachments: this._formBuilder.group({
+                    approved: this._formBuilder.group({}),
+                    confidentiality: this._formBuilder.group({}),
+                    recording: this._formBuilder.group({})
+                })
             }),
             date: [],
             badge: this._formBuilder.group({
