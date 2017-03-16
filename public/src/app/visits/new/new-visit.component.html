@@ -1,0 +1,77 @@
+<h1>
+    New Visit</h1>
+
+<form [formGroup]="visitForm" (submit)="addVisit()">
+
+
+    <form formGroupName="visitor">
+        <legend>Visitor</legend>
+
+        <div class="form-group">
+            <label for="name">Name</label>
+
+            <template #visitorTemplate let-model="item" let-index="index">
+                <b> {{ model.name }} </b> <br />
+                <small> {{ model.company }} ( {{ model.confidentiality }}) </small>
+            </template>
+
+            <input formControlName="name" [typeahead]="users" typeaheadOptionsLimit="10" typeaheadOptionField="name" [typeaheadItemTemplate]="visitorTemplate"
+                placeholder="Typeahead inside a form" class="form-control" (typeaheadOnSelect)="setVisitor($event)">
+        </div>
+
+        <div class="form-group">
+            <label for="company">Company</label>
+            <input [ngModel]="visitor.company" type="text" class="form-control" formControlName="company" id="company" placeholder="Company">
+        </div>
+
+        <input [ngModel]="visitor._id" type="hidden" class="form-control" formControlName="_id" id="_id">
+
+        <div class="checkbox">
+            <label>
+                <input [ngModel]="visitor.confidentiality" type="checkbox" formControlName="confidentiality"> Confidentiality form signed
+            </label>
+        </div>
+
+    </form>
+
+    <hr>
+
+    <legend>Visit Details</legend>
+
+    <div class="form-group">
+        <label for="date">Visit Date</label>
+        <input type="date" class="form-control" formControlName="date" id="date">
+    </div>
+
+    <div class="form-group">
+        <label for="site">Visit Site</label>
+        <select class="form-control" formControlName="site" id="site">
+            <option>Tananger</option>
+            <option>Vestby</option>
+            <option>Helsinki</option>
+        </select>
+    </div>
+
+    <div formGroupName="badge" class="form-group">
+        <label for="badge">Badge#</label>
+        <input type="number" class="form-control" formControlName="badge" id="badge" placeholder="Badge#">
+    </div>
+
+    <div formGroupName="badge" class="checkbox">
+        <label>
+          <input type="checkbox" formControlName="noEscort"> No Escort
+        </label>
+    </div>
+
+    <div formGroupName="keycard" class="form-group">
+        <label for="keycard">Key Card#</label>
+        <input type="number" class="form-control" formControlName="keycard" id="keycard" placeholder="Key Card#">
+    </div>
+
+    <div class="form-group">
+        <label for="comments">Comments</label>
+        <textarea class="form-control" formControlName="comments" id="comments" placeholder="Details about the visit"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

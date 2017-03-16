@@ -3,7 +3,7 @@ import { Badge } from './badge';
 import { Visitor } from './visitor';
 
 export interface Visit {
-    _id: string;
+    _id?: string;
     visitor: Visitor;
     date: Date;
     site: 'Vestby' | 'Tananger';
