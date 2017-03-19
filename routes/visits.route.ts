@@ -84,7 +84,7 @@ router.delete('/:id', (req, res) => {
 router.get('/visitor/:id', (req, res) => {
     let promises: Promise<any>[] = [];
     promises.push(
-        VisitorCollection.find({ _id: monk.id(req.params.id) }),
+        VisitorCollection.findOne({ _id: monk.id(req.params.id) }),
         VisitsCollection.find({"visitor._id": monk.id(req.params.id)})
     )
 
