@@ -32,6 +32,18 @@
             </label>
         </div>
 
+        <div *ngIf="!newVisitor && visitor">
+            <legend>Attachments</legend>
+            <div class="list-group">
+                <a href="#" (click)="$event.preventDefault()" class="list-group-item" 
+                    *ngFor="let key of visitor.attachments | keys"
+                    [class.list-group-item-success]="visitor.attachments[key]">
+                    {{ visitor.attachments[key] ? 
+                        visitor.attachments[key].filename : 'Not Approved' }}
+                </a>
+            </div>
+        </div>
+
     </form>
 
     <hr>
