@@ -37,7 +37,7 @@ router.get('/', (req, res) => {
             break;
     }
 
-    VisitsCollection.find(search, { limit: 30, skip: page * offset }).then((visitors: Visit[]) => {
+    VisitsCollection.find(search, {sort: { "date": -1 }, limit: 30, skip: page * offset }).then((visitors: Visit[]) => {
         res.status(200).send(visitors);
     }).catch(err => {
         res.status(500).send(err);
