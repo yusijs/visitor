@@ -1,3 +1,4 @@
+import { VisitorResolve } from './visits/visitor/visitor.resolver';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -26,7 +27,7 @@ import { NavComponent } from './navbar.component';
     DropdownModule.forRoot(),
     TypeaheadModule.forRoot()
   ],
-  providers: [],
+  providers: [VisitorResolve],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,4 @@
+import { VisitorResolve } from './visits/visitor/visitor.resolver';
 import { NewVisitComponent } from './visits/new/new-visit.component';
 import { VisitorComponent } from './visits/visitor/visitor.component';
 import { VisitsComponent } from './visits/visits.component';
@@ -8,7 +9,7 @@ const routes: Routes = [
     { path: '', pathMatch: 'full', component: VisitsComponent },
     { path: 'expired', component: VisitsComponent },
     { path: 'all', component: VisitsComponent },
-    { path: 'visitor/:id', component: VisitorComponent},
+    { path: 'visitor/:id', component: VisitorComponent, resolve: { visitor: VisitorResolve }},
     { path: 'new', component: NewVisitComponent }
 ];
 
