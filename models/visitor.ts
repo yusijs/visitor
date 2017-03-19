@@ -6,5 +6,6 @@ export interface Visitor {
     name: string;
     confidentiality: boolean;
     _id: string;
+    visits?: Visit[];
     attachments: {[fileType: string]: Files};
 }
