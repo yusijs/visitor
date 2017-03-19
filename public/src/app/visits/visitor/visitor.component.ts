@@ -51,7 +51,9 @@ export class VisitorComponent implements OnInit {
     ngOnInit() {
         // Below values are snapshots of the route to have an initial state.
         this.visitor = this._route.data['_value'].visitor.visitor;
-        this.visits = this._route.data['_value'].visitor.visits;
+        this.visits = this._route.data['_value'].visitor.visits.sort((a, b) => {
+            return a.date > b.date ? -1 : a.date < b.date ? 1 : 0;
+        });
 
         this._route.data.map(v => v['visitor']).subscribe(v => {
             this.visitor = v.visitor;
