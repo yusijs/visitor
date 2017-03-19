@@ -12,7 +12,9 @@ import { FormGroup, FormArray, FormBuilder, FormControl } from '@angular/forms';
 export class NewVisitComponent implements OnInit {
 
     public visitForm: FormGroup;
+    public visitorForm: FormGroup;
     public visitor: Visitor = {} as Visitor;
+    public newVisitor = true;
 
     public searchName: string;
     public users: Visitor[] = [];
@@ -22,6 +24,7 @@ export class NewVisitComponent implements OnInit {
     }
 
     public setVisitor(e) {
+        this.newVisitor = false;
         this.visitor = e.item;
     }
 
@@ -30,18 +33,20 @@ export class NewVisitComponent implements OnInit {
 
     ngOnInit() {
 
+        this.visitorForm = this._formBuilder.group({
+            name: [null],
+            _id: [this.visitor._id],
+            company: [null],
+            confidentiality: [false],
+            attachments: this._formBuilder.group({
+                approved: this._formBuilder.group({}),
+                confidentiality: this._formBuilder.group({}),
+                recording: this._formBuilder.group({})
+            })
+        })
+
         this.visitForm = this._formBuilder.group({
-            visitor: this._formBuilder.group({
-                name: [null],
-                _id: [this.visitor._id],
-                company: [null],
-                confidentiality: [false],
-                attachments: this._formBuilder.group({
-                    approved: this._formBuilder.group({}),
-                    confidentiality: this._formBuilder.group({}),
-                    recording: this._formBuilder.group({})
-                })
-            }),
+            visitor: this.visitorForm,
             date: [],
             badge: this._formBuilder.group({
                 badge: [],
@@ -54,15 +59,11 @@ export class NewVisitComponent implements OnInit {
             comments: []
         });
 
-        this.visitForm.controls['visitor'].valueChanges.subscribe(v => {
+        this.visitorForm.controls['name'].valueChanges.subscribe(name => {
             this.visitor._id = null;
-            if (!v.name || v.name === this.searchName) {
-                return;
-            }
-            this.searchName = v.name;
-            console.log("Name changed and search for new OLDAF name", v.name)
-            this._visitorService.visitorTypeahead(v.name).subscribe(v => this.users = v);
-            // Search for existing visitor
+            this.newVisitor = true;
+            this.searchName = name;
+            this._visitorService.visitorTypeahead(name).subscribe(users => this.users = users);
         });
     }
 }
