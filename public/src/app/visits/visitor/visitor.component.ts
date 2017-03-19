@@ -2,7 +2,7 @@ import { Visitor } from './../../../../../models/visitor';
 import { Visit } from './../../../../../models/visit';
 import { VisitorService } from './visitor.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     moduleId: module.id,
@@ -46,7 +46,7 @@ export class VisitorComponent implements OnInit {
     public params: any;
     public visitor: Visitor;
     public visits: Visit[];
-    constructor(private _route: ActivatedRoute, private _router: Router, private _visitorService: VisitorService){}
+    constructor(private _route: ActivatedRoute, private _visitorService: VisitorService){}
 
     ngOnInit() {
         // Below values are snapshots of the route to have an initial state.
