@@ -13,6 +13,8 @@ export class NewVisitComponent implements OnInit {
 
     public visitForm: FormGroup;
     public visitorForm: FormGroup;
+    public attachmentsForm: FormGroup;
+
     public visitor: Visitor = {} as Visitor;
     public newVisitor = true;
 
@@ -33,16 +35,18 @@ export class NewVisitComponent implements OnInit {
 
     ngOnInit() {
 
+        this.attachmentsForm = this._formBuilder.group({
+            approved: this._formBuilder.group({}),
+            confidentiality: this._formBuilder.group({}),
+            recording: this._formBuilder.group({})
+        });
+
         this.visitorForm = this._formBuilder.group({
             name: [null],
             _id: [this.visitor._id],
             company: [null],
             confidentiality: [false],
-            attachments: this._formBuilder.group({
-                approved: this._formBuilder.group({}),
-                confidentiality: this._formBuilder.group({}),
-                recording: this._formBuilder.group({})
-            })
+            attachments: this.attachmentsForm
         })
 
         this.visitForm = this._formBuilder.group({
