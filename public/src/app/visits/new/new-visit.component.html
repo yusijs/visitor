@@ -15,8 +15,9 @@
                 <small> {{ model.company }} ( {{ model.confidentiality }}) </small>
             </template>
 
-            <input formControlName="name" [typeahead]="users" typeaheadOptionsLimit="10" typeaheadOptionField="name" [typeaheadItemTemplate]="visitorTemplate"
-                placeholder="Typeahead inside a form" class="form-control" (typeaheadOnSelect)="setVisitor($event)">
+            <input formControlName="name" [typeahead]="users" typeaheadOptionsLimit="10" typeaheadOptionField="name" 
+            [typeaheadItemTemplate]="visitorTemplate" [typeaheadMinLength]="3"
+                placeholder="Visitors name" class="form-control" (typeaheadOnSelect)="setVisitor($event)">
         </div>
 
         <div class="form-group">
