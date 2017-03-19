@@ -20,7 +20,7 @@ export class VisitorService {
             .map(res => res.json());
     }
 
-    public getVisits(id: string): Observable<Visit> {
+    public getVisits(id: string): Observable<Visitor> {
         return this._http.get('/api/visits/visitor/' + id)
             .map(res => res.json());
     }
