@@ -57,7 +57,14 @@ export class NewVisitComponent implements OnInit {
         });
 
         this.visitorForm.controls['name'].valueChanges.subscribe(name => {
-            this.visitor._id = null;
+            if (name.length === 0) {
+                return;
+            }
+            if (this.searchName !== name) {
+                this.visitorForm.controls['_id'].reset();
+                this.visitorForm.controls['company'].reset();
+                this.visitorForm.controls['confidentiality'].reset();
+            }
             this.newVisitor = true;
             this.searchName = name;
             this._visitorService.visitorTypeahead(name).subscribe(users => this.users = users);
