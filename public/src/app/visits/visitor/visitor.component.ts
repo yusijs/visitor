@@ -3,17 +3,38 @@ import { Visit } from './../../../../../models/visit';
 import { VisitorService } from './visitor.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { RequestOptions, Headers } from '@angular/http';
 
 @Component({
     moduleId: module.id,
     selector: 'app-visitor',
+    styles: ['td.nowrap { white-space: nowrap }', 'th { white-space: nowrap }'],
     templateUrl: 'visitor.component.html'
 })
 export class VisitorComponent implements OnInit {
     public params: any;
     public visitor: Visitor;
     public visits: Visit[];
-    constructor(private _route: ActivatedRoute, private _visitorService: VisitorService){}
+    public file: FileList;
+
+    fileChanged(e: Event) {
+        this.file = e.target['files'];
+        console.log(this.file);
+    }
+
+    testFile() {
+        if (this.file.length === 0) {
+            return;
+        }
+
+        this._visitorService.uploadFile('approved', this.file[0], new Date())
+            .subscribe(
+                console.log,
+                console.error
+            );
+    }
+
+    constructor(private _route: ActivatedRoute, private _visitorService: VisitorService) { }
 
     ngOnInit() {
         // Below values are snapshots of the route to have an initial state.
