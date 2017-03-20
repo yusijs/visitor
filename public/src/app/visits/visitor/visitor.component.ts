@@ -7,42 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
     moduleId: module.id,
     selector: 'app-visitor',
-    template: `
-        <h2> {{ visitor.name }} <small>{{ visitor.company }}</small></h2>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Visit Date</th>
-                    <th>Site</th>
-                    <th>Badge</th>
-                    <th>No Escort</th>
-                    <th>Keycard</th>
-                    <th>Comment</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let visit of visits">
-                    <td>{{ visit.date | date }}</td>
-                    <td>{{ visit.site }}</td>
-                    <td>
-                        <span [style.text-decoration]="visit.badge.returned ? 'line-through' : 'initial'">
-                            {{ visit.badge.badge }}
-                        </span>
-                    </td>
-                    <td>
-                        <i class="fa" [class.fa-check]="visit.badge.noEscort" [class.fa-times]="!visit.badge.noEscort"></i>
-                    </td>
-                    <td>
-                        <span [style.text-decoration]="visit.keycard.returned ? 'line-through' : 'initial'">
-                            {{ visit.keycard.keycard }}
-                        </span>
-                    </td>
-                    <td>{{ visit.comments }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <pre> {{ visits | json }} </pre>
-    `
+    templateUrl: 'visitor.component.html'
 })
 export class VisitorComponent implements OnInit {
     public params: any;
