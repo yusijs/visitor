@@ -6,8 +6,8 @@ export interface Visit {
     _id?: string;
     visitor: Visitor;
     date: Date;
-    site: 'Vestby' | 'Tananger';
+    site: 'Vestby' | 'Tananger' | 'Helsinki';
     comments: string;
     badge: Badge;
-    keycard: Keycard
+    keycard: Keycard;
 }
