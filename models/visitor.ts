@@ -5,7 +5,11 @@ export interface Visitor {
     company: string;
     name: string;
     confidentiality: boolean;
-    _id: string;
+    _id?: string;
     visits?: Visit[];
-    attachments: {[fileType: string]: Files};
+    attachments: {
+        recording: Files[];
+        approved: Files[];
+        confidentiality: Files[];
+    };
 }
