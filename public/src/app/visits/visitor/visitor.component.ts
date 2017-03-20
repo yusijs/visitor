@@ -25,15 +25,17 @@ import { ActivatedRoute } from '@angular/router';
                     <td>{{ visit.date | date }}</td>
                     <td>{{ visit.site }}</td>
                     <td>
-                        {{ visit.badge.badge }}
-                        <span *ngIf="visit.badge.returned" class="badge"><i class="fa fa-check"></i></span>
+                        <span [style.text-decoration]="visit.badge.returned ? 'line-through' : 'initial'">
+                            {{ visit.badge.badge }}
+                        </span>
                     </td>
                     <td>
                         <i class="fa" [class.fa-check]="visit.badge.noEscort" [class.fa-times]="!visit.badge.noEscort"></i>
                     </td>
                     <td>
-                        {{ visit.keycard.keycard }}
-                        <span *ngIf="visit.keycard.returned" class="badge"><i class="fa fa-check"></i></span>
+                        <span [style.text-decoration]="visit.keycard.returned ? 'line-through' : 'initial'">
+                            {{ visit.keycard.keycard }}
+                        </span>
                     </td>
                     <td>{{ visit.comments }}</td>
                 </tr>
