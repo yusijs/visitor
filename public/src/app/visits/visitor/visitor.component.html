@@ -47,7 +47,13 @@
 
     <div class="col-md-4 panel panel-info">
         <div class="panel-heading">
-            <h3 class="panel-title">Attachments <small class="pull-right">Add <i class="fa fa-plus-circle"></i></small></h3>
+            <h3 class="panel-title">
+                Attachments 
+                <a href="#" class="pull-right" (click)="$event.preventDefault(); lgModal.show()">
+                    Add 
+                    <i class="fa fa-plus-circle"></i>
+                </a>
+            </h3>
         </div>
         <div class="panel-body">
         </div>
@@ -58,28 +64,25 @@
                 <th>Signed Date</th>
             </thead>
             <tbody>
-                <tr *ngFor="let file of visitor.attachments.approved">
+                <tr *ngFor="let file of visitor.attachments.approved | orderBy: '-dateSigned'">
                     <td>Approval Form</td>
                     <td>{{ file.filename }}</td>
                     <td>
-                        {{ file.dateSigned | date }}
-                        ({{ file.dateSigned | amTimeAgo }})
+                        {{ file.dateSigned | date }} ({{ file.dateSigned | amTimeAgo }})
                     </td>
                 </tr>
-                <tr *ngFor="let file of visitor.attachments.confidentiality">
+                <tr *ngFor="let file of visitor.attachments.confidentiality | orderBy: '-dateSigned'">
                     <td>Confidentiality Form</td>
                     <td>{{ file.filename }}</td>
                     <td>
-                        {{ file.dateSigned | date }}
-                        ({{ file.dateSigned | amTimeAgo }})
+                        {{ file.dateSigned | date }} ({{ file.dateSigned | amTimeAgo }})
                     </td>
                 </tr>
-                <tr *ngFor="let file of visitor.attachments.recording">
+                <tr *ngFor="let file of visitor.attachments.recording | orderBy: '-dateSigned'">
                     <td>Recording Device Form</td>
                     <td>{{ file.filename }}</td>
                     <td>
-                        {{ file.dateSigned | date }}    
-                        ({{ file.dateSigned | amTimeAgo }})
+                        {{ file.dateSigned | date }} ({{ file.dateSigned | amTimeAgo }})
                     </td>
                 </tr>
             </tbody>
@@ -89,10 +92,31 @@
 </div>
 
 
-<input type="file" (change)="fileChanged($event)">
 
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Add Attachment</h4>
+                <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label>Form Date</label>
+                <input [ngModel]="fileInfo.date" type="date" class="form-control" #date (change)="fileInfo.date = date.value">
+                <label>Form Type</label>
+                <select #filetype class="form-control" (change)="fileInfo.filetype = filetype.value">
+                    <option disabled>Pick form type...</option>
+                    <option value="approved">Approved Visit Form</option>
+                    <option value="confidentiality">Confidentiality form</option>
+                </select>
 
-<button type="button" class="btn btn-default" (click)="testFile()">Test Files</button>
+                <input type="file" class="form-control" (change)="fileChanged($event)">
 
-
-<!--<pre> {{ visits | json }} </pre>-->
+                <button type="button" class="btn btn-primary" (click)="testFile()">Upload File</button>
+                {{ fileInfo | json }}
+            </div>
+        </div>
+    </div>
+</div>
