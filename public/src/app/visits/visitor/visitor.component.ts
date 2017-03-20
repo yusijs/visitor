@@ -60,6 +60,6 @@ export class VisitorComponent implements OnInit {
         this._route.data.map(v => v['visitor']).subscribe(v => {
             this.visitor = v.visitor;
             this.visits = v.visits;
-        })
+        });
     }
 }
