@@ -30,14 +30,16 @@ export class VisitorService {
             .map(res => res.json());
     }
 
-    public uploadFile(type: string, file: File, date: Date): Observable<any> {
+    public uploadFile(type: string, file: File, date: Date, id: string): Observable<any> {
 
         const formData: FormData = new FormData();
         formData.append('file', file, file.name);
+        formData.append('type', type);
+        formData.append('date', date);
+        formData.append('id', id);
 
         const headers = new Headers();
 
-        // headers.append('Content-Type', 'multipart/form-data');
         headers.append('Accept', 'application/json');
 
         const options = new RequestOptions({ headers: headers });

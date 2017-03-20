@@ -15,6 +15,7 @@ export class VisitorComponent implements OnInit {
     public params: any;
     public visitor: Visitor;
     public visits: Visit[];
+    public id: string;
     public file: FileList;
 
     fileChanged(e: Event) {
@@ -27,7 +28,7 @@ export class VisitorComponent implements OnInit {
             return;
         }
 
-        this._visitorService.uploadFile('approved', this.file[0], new Date())
+        this._visitorService.uploadFile('approved', this.file[0], new Date(), this.id)
             .subscribe(
                 console.log,
                 console.error
@@ -47,5 +48,7 @@ export class VisitorComponent implements OnInit {
             this.visitor = v.visitor;
             this.visits = v.visits;
         });
+
+        this._route.params.subscribe(p => this.id = p['id']);
     }
 }
