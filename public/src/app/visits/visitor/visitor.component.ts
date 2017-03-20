@@ -4,6 +4,7 @@ import { VisitorService } from './visitor.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RequestOptions, Headers } from '@angular/http';
+import * as moment from 'moment';
 
 @Component({
     moduleId: module.id,
@@ -18,17 +19,23 @@ export class VisitorComponent implements OnInit {
     public id: string;
     public file: FileList;
 
+    public fileInfo = {
+        date: String(moment().format('YYYY-MM-DD')),
+        filetype: ''
+    };
+
     fileChanged(e: Event) {
         this.file = e.target['files'];
         console.log(this.file);
     }
 
     testFile() {
-        if (this.file.length === 0) {
+        // console.log(new Date(this.fileInfo.date));
+        if (this.file && this.file.length === 0) {
             return;
         }
 
-        this._visitorService.uploadFile('approved', this.file[0], new Date(), this.id)
+        this._visitorService.uploadFile('approved', this.file[0], new Date(this.fileInfo.date).toISOString(), this.id)
             .subscribe(
                 console.log,
                 console.error
