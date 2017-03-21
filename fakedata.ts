@@ -61,18 +61,21 @@ function visitor() {
                     "approved": Math.random() > 0.5 ? [
                         {
                             "filename": crypto.randomBytes(4).readUInt32LE(0).toString(),
+                            "originalName": faker.system.commonFileName('.pdf', 'pdf'),
                             "dateSigned": faker.date.past(1)
                         }
                     ] : [],
                     "confidentiality": Math.random() > 0.5 ? [
                         {
                             "filename": crypto.randomBytes(4).readUInt32LE(0).toString(),
+                            "originalName": faker.system.commonFileName('.pdf', 'pdf'),
                             "dateSigned": faker.date.past(1)
                         }
                     ] : [],
                     "recording": Math.random() > 0.5 ? [
                         {
                             "filename": crypto.randomBytes(4).readUInt32LE(0).toString(),
+                            "originalName": faker.system.commonFileName('.pdf', 'pdf'),
                             "dateSigned": faker.date.past(1)
                         }
                     ] : []

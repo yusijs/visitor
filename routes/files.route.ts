@@ -23,6 +23,7 @@ router.post('/', upload.single('file'), (req, res) => {
         $push: {
             [field]: {
                 filename: req.file.filename,
+                originalName: req.file.originalname,
                 dateSigned: new Date(req.body.date)
             }
         }
