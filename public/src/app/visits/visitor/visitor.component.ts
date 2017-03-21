@@ -26,12 +26,11 @@ export class VisitorComponent implements OnInit {
 
     fileChanged(e: Event) {
         this.file = e.target['files'];
-        console.log(this.file);
     }
 
-    testFile() {
-        // console.log(new Date(this.fileInfo.date));
-        if (this.file && this.file.length === 0) {
+    uploadFile() {
+
+        if (!this.fileInfo.date || !this.fileInfo.filetype || !this.file) {
             return;
         }
 

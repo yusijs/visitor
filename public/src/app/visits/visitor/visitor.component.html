@@ -114,8 +114,9 @@
 
                 <input type="file" class="form-control" (change)="fileChanged($event)">
 
-                <button type="button" class="btn btn-primary" (click)="testFile()">Upload File</button>
-                {{ fileInfo | json }}
+                <button type="button" class="btn btn-primary" 
+                    [disabled]="!this.fileInfo.date || !this.fileInfo.filetype || !this.file"
+                    (click)="uploadFile()">Upload File</button>
             </div>
         </div>
     </div>
