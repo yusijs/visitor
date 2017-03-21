@@ -66,21 +66,33 @@
             <tbody>
                 <tr *ngFor="let file of visitor.attachments.approved | orderBy: '-dateSigned'">
                     <td>Approval Form</td>
-                    <td>{{ file.filename }}</td>
+                    <td>
+                        <a (click)="$event.preventDefault()" [href]="'/files/' + file.filename">
+                            {{ file.originalName }}
+                        </a>
+                    </td>
                     <td>
                         {{ file.dateSigned | date }} ({{ file.dateSigned | amTimeAgo }})
                     </td>
                 </tr>
                 <tr *ngFor="let file of visitor.attachments.confidentiality | orderBy: '-dateSigned'">
                     <td>Confidentiality Form</td>
-                    <td>{{ file.filename }}</td>
+                    <td>
+                        <a (click)="$event.preventDefault()" [href]="'/files/' + file.filename">
+                            {{ file.originalName }}
+                        </a>
+                    </td>
                     <td>
                         {{ file.dateSigned | date }} ({{ file.dateSigned | amTimeAgo }})
                     </td>
                 </tr>
                 <tr *ngFor="let file of visitor.attachments.recording | orderBy: '-dateSigned'">
                     <td>Recording Device Form</td>
-                    <td>{{ file.filename }}</td>
+                    <td>
+                        <a (click)="$event.preventDefault()" [href]="'/files/' + file.filename">
+                            {{ file.originalName }}
+                        </a>
+                    </td>
                     <td>
                         {{ file.dateSigned | date }} ({{ file.dateSigned | amTimeAgo }})
                     </td>
