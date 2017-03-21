@@ -1,0 +1,45 @@
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Filter } from './../../../../../models/filter';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
+@Component({
+    moduleId: module.id,
+    selector: 'app-filter',
+    templateUrl: 'filter.component.html'
+})
+export class FilterComponent implements OnInit {
+
+    @Output('filterChange') filterChange: EventEmitter<Filter> = new EventEmitter();
+
+    public form: FormGroup;
+    public visitorForm: FormGroup;
+
+    constructor(private _formBuilder: FormBuilder) { }
+
+    ngOnInit() {
+
+        this.form = this._formBuilder.group({
+            visitor: this._formBuilder.group({
+                name: [],
+                company: []
+            }),
+            status: ['active'],
+            site: [],
+            visitDate: this._formBuilder.group({
+                comparator: [],
+                date: []
+            }),
+            badge: this._formBuilder.group({
+                badge: [],
+                returned: [null],
+                noEscort: []
+            }),
+            keycard: this._formBuilder.group({
+                keycard: [],
+                returned: []
+            })
+        });
+
+        this.form.valueChanges.subscribe(console.log);
+    }
+}

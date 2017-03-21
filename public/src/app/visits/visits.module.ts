@@ -1,3 +1,4 @@
+import { FilterComponent } from './filter/filter.component';
 import { TypeaheadModule } from 'ng2-bootstrap/typeahead';
 import { ModalModule } from 'ng2-bootstrap/modal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -13,7 +14,7 @@ import { CommonModule } from '@angular/common';
 import { MomentModule } from 'angular2-moment';
 
 @NgModule({
-    declarations: [VisitsComponent, VisitorComponent, NewVisitComponent],
+    declarations: [VisitsComponent, VisitorComponent, NewVisitComponent, FilterComponent],
     providers: [VisitsService, VisitorService],
     imports: [
         CommonModule, SharedModule, RouterModule,

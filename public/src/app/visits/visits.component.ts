@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
     selector: 'app-visits',
     moduleId: module.id,
     template: `
+        <app-filter class="col-md-6"></app-filter>
         <table class="table table-striped table-hover" (window:scroll)="onScroll($event)">
             <thead>
                 <tr>
