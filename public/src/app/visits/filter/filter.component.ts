@@ -40,10 +40,7 @@ export class FilterComponent implements OnInit {
             }),
             status: ['active'],
             site: [],
-            visitDate: this._formBuilder.group({
-                comparator: [],
-                date: []
-            }),
+            visitDate: [],
             badge: this._formBuilder.group({
                 badge: [],
                 returned: [null],
