@@ -14,6 +14,21 @@ export class FilterComponent implements OnInit {
     public form: FormGroup;
     public visitorForm: FormGroup;
 
+    public selectValues = [
+        {
+            value: null,
+            name: 'All'
+        },
+        {
+            value: true,
+            name: 'Returned'
+        },
+        {
+            value: false,
+            name: 'Not Returned'
+        }
+    ];
+
     constructor(private _formBuilder: FormBuilder) { }
 
     ngOnInit() {

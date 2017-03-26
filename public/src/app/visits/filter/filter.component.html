@@ -28,49 +28,53 @@
         </div>
     </div>
     <div class="row">
-        <div class="form-group" formGroupName="badge">
-            <div class="col-md-4">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" formControlName="returned"> Badge Returned
-                    </label>
-                </div>
+        <div class="form-group col-md-6" formGroupName="badge">
+            <label class="col-sm-2 control-label" for="badge-returned">Badge Returned</label>
+            <div class="col-sm-10">
+                <select class="form-control" formControlName="returned" id="badge-returned">
+                    <option [ngValue]="value.value" *ngFor="let value of selectValues">
+                        {{ value.name }}
+                    </option>
+                </select>
             </div>
-            <div class="col-md-4">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" formControlName="returned"> Badge Returned
-                    </label>
-                </div>
+        </div>
+        <div class="form-group col-md-6" formGroupName="keycard">
+            <label class="control-label col-sm-2" for="keycard-returned">Keycard Returned</label>
+            <div class="col-sm-10">
+                <select class="form-control" formControlName="returned" id="keycard-returned">
+                    <option [ngValue]="value.value" *ngFor="let value of selectValues">
+                        {{ value.name }}
+                    </option>
+                </select>
             </div>
         </div>
     </div>
-    <div class="row" formGroupName="visitor">
+    <div class="row">
         <div class="form-group col-md-6">
-            <label for="name" class="col-sm-2 control-label">Name</label>
+            <label for="name" class="col-sm-2 control-label">Site</label>
             <div class="col-sm-10">
-                <input formControlName="name" type="text" class="form-control" id="name" placeholder="Visitor Name">
+                <select formControlName="site" class="form-control">
+                    <option value="Tananger">Tananger</option>
+                    <option value="Vestby">Vestby</option>
+                    <option value="Helsinki">Helsink</option>
+                </select>
             </div>
         </div>
         <div class="form-group col-md-6">
-            <label for="company" class="col-sm-2 control-label">Company</label>
+            <label for="visit-date" class="col-sm-2 control-label">Visit Date</label>
             <div class="col-sm-10">
-                <input formControlName="company" type="text" class="form-control" id="company" placeholder="Visitor's company'">
+                <input 
+                    formControlName="visitDate" 
+                    type="date" 
+                    class="form-control" 
+                    id="visit-date" 
+                    placeholder="Visit Date">
             </div>
         </div>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <div class="checkbox">
-                <label>
-          <input type="checkbox"> Remember me
-        </label>
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">Sign in</button>
+            <button type="submit" class="btn btn-default">Search</button>
         </div>
     </div>
 </form>
