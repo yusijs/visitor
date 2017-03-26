@@ -27,10 +27,10 @@ import { Component } from '@angular/core';
                         </ul>
                     </li>
                     <li style="margin-left: 10px" class="dropdown">
-                    <template #visitorTemplate let-model="item" let-index="index">
+                    <ng-template #visitorTemplate let-model="item" let-index="index">
                         <b> {{ model.name }} </b> <br />
                         <small> {{ model.company }} </small>
-                    </template>
+                    </ng-template>
                         <input [(ngModel)]="searchUser"
                             placeholder="Search for visitors.."
                             [typeaheadItemTemplate]="visitorTemplate"

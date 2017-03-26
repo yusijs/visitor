@@ -10,10 +10,10 @@
         <div class="form-group">
             <label for="name">Name</label>
 
-            <template #visitorTemplate let-model="item" let-index="index">
+            <ng-template #visitorTemplate let-model="item" let-index="index">
                 <b> {{ model.name }} </b> <br />
                 <small> {{ model.company }} ( {{ model.confidentiality }}) </small>
-            </template>
+            </ng-template>
 
             <input formControlName="name" [typeahead]="users" typeaheadOptionsLimit="10" typeaheadOptionField="name" 
             [typeaheadItemTemplate]="visitorTemplate" [typeaheadMinLength]="3"
