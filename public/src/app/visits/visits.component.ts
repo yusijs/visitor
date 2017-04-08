@@ -8,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
     selector: 'app-visits',
     moduleId: module.id,
     template: `
-        <app-filter class="col-md-6"></app-filter>
+        <app-filter (filterChange)="setFilters($event)" class="col-md-6"></app-filter>
+        <div class="col-md-6">
+            <pre>
+                {{ filters | json }}
+            </pre>
+        </div>
         <table class="table table-striped table-hover" (window:scroll)="onScroll($event)">
             <thead>
                 <tr>
@@ -41,6 +46,7 @@ import { Component, OnInit } from '@angular/core';
 export class VisitsComponent {
     public visits: Visit[] = [];
     public page = 0;
+    public filters;
     public path: string;
     public expired: boolean;
     public observable: Observable<Visit[]>;
@@ -78,9 +84,13 @@ export class VisitsComponent {
             title: 'Signed Date',
             field: 'visitor.attachments.approved.dateSigned'
         },
-    ]
-
+    ];
     public orderBy: string = '';
+
+    public setFilters(filters) {
+        this.filters = filters;
+    }
+
 
     public sort(sortby: string) {
         if (sortby === 'badge.noEscort') {
