@@ -29,6 +29,10 @@ export class FilterComponent implements OnInit {
         }
     ];
 
+    public emitFilters() {
+        this.filterChange.emit(this.form.value);
+    }
+
     constructor(private _formBuilder: FormBuilder) { }
 
     ngOnInit() {
@@ -52,6 +56,5 @@ export class FilterComponent implements OnInit {
             })
         });
 
-        this.form.valueChanges.subscribe(console.log);
     }
 }
