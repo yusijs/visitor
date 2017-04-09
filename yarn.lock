@@ -56,10 +56,6 @@
     "@types/mongodb" "*"
     "@types/node" "*"
 
-"@types/monk@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@types/monk/-/monk-1.0.5.tgz#9e348dc01559c2dac2dc438f9368d60da0627bd3"
-
 "@types/multer@^0.0.33":
   version "0.0.33"
   resolved "https://registry.yarnpkg.com/@types/multer/-/multer-0.0.33.tgz#0756df1f525ed8ef369dd1f26dd8345bd6467040"
@@ -331,17 +327,17 @@ date-fns@^1.23.0:
   version "1.28.0"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.28.0.tgz#3b12f54b66467807bb95e5930caf7bfb4170bc1a"
 
-debug@*, debug@2.6.1:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.1.tgz#79855090ba2c4e3115cc7d8769491d58f0491351"
-  dependencies:
-    ms "0.7.2"
-
 debug@2.2.0, debug@~2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.2.0.tgz#f87057e995b1a1f6ae6a4960664137bc56f039da"
   dependencies:
     ms "0.7.1"
+
+debug@2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.1.tgz#79855090ba2c4e3115cc7d8769491d58f0491351"
+  dependencies:
+    ms "0.7.2"
 
 deep-extend@~0.4.0:
   version "0.4.1"
@@ -715,7 +711,7 @@ mongodb-core@2.1.9:
     bson "~1.0.4"
     require_optional "~1.0.0"
 
-mongodb@2.2.25, mongodb@^2.1.18:
+mongodb@2.2.25:
   version "2.2.25"
   resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-2.2.25.tgz#d3b25dad00eda2bdfcbc996210ba082ac686a6b6"
   dependencies:
@@ -739,13 +735,6 @@ mongoose@^4.9.3:
     muri "1.2.1"
     regexp-clone "0.0.1"
     sliced "1.0.1"
-
-monk@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/monk/-/monk-4.0.0.tgz#ac5439e3543b1b486d787d1704bd7e10a2ddd0d2"
-  dependencies:
-    debug "*"
-    mongodb "^2.1.18"
 
 mpath@0.2.1:
   version "0.2.1"

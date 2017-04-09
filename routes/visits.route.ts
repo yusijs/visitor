@@ -133,8 +133,6 @@ router.get('/visitor/:id', (req, res) => {
         VisitModel.find({
             'visitor._id': req.params.id
         })
-        // VisitorCollection.findOne({ _id: monk.id(req.params.id) }),
-        // VisitsCollection.find({"visitor._id": monk.id(req.params.id)})
     );
 
     Promise.all(promises).then(data => {

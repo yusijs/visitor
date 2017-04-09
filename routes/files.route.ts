@@ -1,7 +1,6 @@
 import { VisitorModel } from './../config/visitors.schema';
 import express = require('express');
 import multer = require('multer');
-import monk = require('monk');
 import crypto = require('crypto');
 
 const storage = multer.diskStorage({
