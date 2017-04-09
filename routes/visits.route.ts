@@ -39,12 +39,13 @@ router.get('/', (req, res) => {
     }
 
     VisitModel
-        .find(search, null, 
-            { sort: 
-                { 'date': -1 }
-            }
+        .find(search, null,
+        {
+            sort:
+            { 'date': -1 }
+        }
         )
-        .skip(page*offset)
+        .skip(page * offset)
         .limit(30)
         .then(documents => {
             console.log("Mongoose");
@@ -70,19 +71,29 @@ router.post('/search', (req, res) => {
 });
 
 router.get('/typeahead/:name', (req, res) => {
-    VisitorCollection.find({
-        "name": new RegExp(req.params.name, 'ig')
-    }, {
-            fields: {
-                _id: 1,
-                name: 1,
-                company: 1
-            }
-        }).then(namesObject => {
-            res.status(200).send(namesObject);
-        }).catch(err => {
-            throw err;
-        })
+
+    VisitorModel.find({
+        name: new RegExp(req.params.name, 'ig')
+    }, '_id name company')
+        .then(document => {
+            res.status(200).send(document);
+        }).catch(e => {
+            res.status(500).send(e);
+        });
+
+    // VisitorCollection.find({
+    //     "name": new RegExp(req.params.name, 'ig')
+    // }, {
+    //         fields: {
+    //             _id: 1,
+    //             name: 1,
+    //             company: 1
+    //         }
+    //     }).then(namesObject => {
+    //         res.status(200).send(namesObject);
+    //     }).catch(err => {
+    //         throw err;
+    //     })
 });
 
 router.post('/', (req, res) => {
