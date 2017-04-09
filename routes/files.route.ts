@@ -1,3 +1,4 @@
+import { VisitorModel } from './../config/visitors.schema';
 import { VisitorCollection } from './../config';
 import express = require('express');
 import multer = require('multer');
@@ -26,10 +27,6 @@ export const router = express.Router({});
 
 router.post('/', upload.single('file'), (req, res) => {
 
-    let search = {
-        _id: monk.id(req.body.id)
-    };
-
     let field = `attachments.${req.body.type}`;
 
     let update = {
@@ -42,7 +39,7 @@ router.post('/', upload.single('file'), (req, res) => {
         }
     };
 
-    VisitorCollection.update(search, update).then(doc => {
+    VisitorModel.update({ _id: req.body.id }, update).then(doc => {
         res.status(200).send(doc);
     });
 });
