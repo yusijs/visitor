@@ -18,7 +18,7 @@ import { Component } from '@angular/core';
                     <li [routerLinkActive]="'active'"><a [routerLink]="['new']">New Visit</a></li>
                     <li dropdown class="dropdown">
                         <button type="button" class="btn btn-primary" dropdownToggle>
-                            Filters <span class="caret"></span>
+                            Quick Filters <span class="caret"></span>
                         </button>
                         <ul dropdownMenu role="menu" aria-labelledby="single-button">
                             <li role="menuitem"><a class="dropdown-item" [routerLink]="['/']">Active</a></li>
