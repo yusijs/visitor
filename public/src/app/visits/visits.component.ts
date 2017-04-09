@@ -85,7 +85,7 @@ export class VisitsComponent {
             field: 'visitor.attachments.approved.dateSigned'
         },
     ];
-    public orderBy: string = '';
+    public orderBy = '';
 
     public setFilters(filters) {
         this._visitsService.searchVisitors(filters)
