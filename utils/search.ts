@@ -9,8 +9,7 @@ export class Search {
 
     public execute(): Promise<Visit[]> {
         let search = this.buildSearch();
-        console.log(search);
-        return VisitsCollection.find(search, { sort: { "date": -1 }, limit: 30 });
+        return VisitsCollection.find(search, { sort: { "date": -1 }, limit: 100 });
     }
 
     private buildSearch(): Query {
