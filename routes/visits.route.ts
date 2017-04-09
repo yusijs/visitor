@@ -98,19 +98,27 @@ router.get('/typeahead/:name', (req, res) => {
 
 router.post('/', (req, res) => {
     const body: Visit = req.body;
-    VisitsCollection.insert(body).then(status => {
+
+    VisitModel.create(body).then(status => {
         res.status(200).send(status);
-    }).catch(err => {
-        res.status(500).send(err);
-    })
+    }).catch(e => {
+        res.status(500).send(e);
+    });
+
 });
 
 router.put('/:id', (req, res) => {
-    VisitsCollection.update({ _id: req.body.id }, { $set: req.body.update }).then(status => {
+
+    VisitModel.update({
+        _id: req.body.id
+    }, {
+        $set: req.body.update
+    }).then(status => {
         res.status(200).send(status);
-    }).catch(err => {
-        res.status(500).send(err);
-    })
+    }).catch(e => {
+        res.status(500).send(e);
+    });
+
 });
 
 router.delete('/:id', (req, res) => {
