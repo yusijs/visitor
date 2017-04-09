@@ -1,3 +1,4 @@
+import { Search } from './../utils/search';
 import { VisitsCollection, VisitorCollection, db } from './../config';
 import { Visit } from './../models/visit';
 
@@ -41,6 +42,15 @@ router.get('/', (req, res) => {
         res.status(200).send(visitors);
     }).catch(err => {
         res.status(500).send(err);
+    });
+});
+
+router.post('/search', (req, res) => {
+    const search = new Search(req.body);
+    search.execute().then((visits: Visit[]) => {
+        res.status(200).send(visits);
+    }).catch(e => {
+        res.status(500).send(e);
     });
 });
 

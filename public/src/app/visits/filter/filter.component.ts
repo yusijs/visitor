@@ -42,7 +42,6 @@ export class FilterComponent implements OnInit {
                 name: [],
                 company: []
             }),
-            status: ['active'],
             site: [],
             visitDate: [],
             badge: this._formBuilder.group({

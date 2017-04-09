@@ -88,6 +88,8 @@ export class VisitsComponent {
     public orderBy: string = '';
 
     public setFilters(filters) {
+        this._visitsService.searchVisitors(filters)
+            .subscribe(visits => this.visits = visits);
         this.filters = filters;
     }
 

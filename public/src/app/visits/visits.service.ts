@@ -15,6 +15,11 @@ export class VisitsService {
             .map(res => res.json());
     }
 
+    public searchVisitors(filter): Observable<Visit[]> {
+        return this._http.post('/api/visits/search', filter)
+            .map(res => res.json());
+    }
+
     public getVisitors(filter, page = 0): Observable<Visit[]> {
         let query = new URLSearchParams();
         query.set('filter', filter);
