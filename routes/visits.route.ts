@@ -1,3 +1,4 @@
+import { VisitorModel, VisitModel } from './../config/visitors.schema';
 import { Search } from './../utils/search';
 import { VisitsCollection, VisitorCollection, db } from './../config';
 import { Visit } from './../models/visit';
@@ -38,7 +39,7 @@ router.get('/', (req, res) => {
             break;
     }
 
-    VisitsCollection.find(search, {sort: { "date": -1 }, limit: 30, skip: page * offset }).then((visitors: Visit[]) => {
+    VisitsCollection.find(search, { sort: { "date": -1 }, limit: 30, skip: page * offset }).then((visitors: Visit[]) => {
         res.status(200).send(visitors);
     }).catch(err => {
         res.status(500).send(err);
@@ -92,17 +93,23 @@ router.delete('/:id', (req, res) => {
 });
 
 router.get('/visitor/:id', (req, res) => {
-    let promises: Promise<any>[] = [];
+    let promises: any[] = [];
     promises.push(
-        VisitorCollection.findOne({ _id: monk.id(req.params.id) }),
-        VisitsCollection.find({"visitor._id": monk.id(req.params.id)})
-    )
+        VisitorModel.findOne({
+            '_id': req.params.id
+        }),
+        VisitModel.find({
+            'visitor._id': req.params.id
+        })
+        // VisitorCollection.findOne({ _id: monk.id(req.params.id) }),
+        // VisitsCollection.find({"visitor._id": monk.id(req.params.id)})
+    );
 
     Promise.all(promises).then(data => {
         let response = {
             visits: data[1],
             visitor: data[0]
-        }
+        };
         res.status(200).send(response);
     }).catch(e => res.status(500).send(e.toString()));
 });
