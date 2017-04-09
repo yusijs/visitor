@@ -1,5 +1,4 @@
 import { VisitorModel } from './../config/visitors.schema';
-import { VisitorCollection } from './../config';
 import express = require('express');
 import multer = require('multer');
 import monk = require('monk');
