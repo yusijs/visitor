@@ -6,6 +6,7 @@ import { router } from './server.router';
 const app = express();
 
 app.use(express.static('public/dist'));
+app.use(express.static('upload'));
 app.use(bodyParser.json());
 app.use(compression());
 
