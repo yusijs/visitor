@@ -1,6 +1,5 @@
 import { VisitorModel, VisitModel } from './../config/visitors.schema';
 import { Search } from './../utils/search';
-import { VisitsCollection, VisitorCollection } from './../config';
 import { Visit } from './../models/visit';
 
 
