@@ -8,12 +8,7 @@ import { Component, OnInit } from '@angular/core';
     selector: 'app-visits',
     moduleId: module.id,
     template: `
-        <app-filter (filterChange)="setFilters($event)" class="col-md-6"></app-filter>
-        <div class="col-md-6">
-            <pre>
-                {{ filters | json }}
-            </pre>
-        </div>
+        <app-filter (reset)="clearFilters()" (filterChange)="setFilters($event)" class="col-md-6"></app-filter>
         <table class="table table-striped table-hover" (window:scroll)="onScroll($event)">
             <thead>
                 <tr>
@@ -41,6 +36,9 @@ import { Component, OnInit } from '@angular/core';
                 </tr>
             </tbody>
         </table>
+        <div *ngIf="filters" class="text-center">
+            <p>End of results</p>
+        </div>
     `
 })
 export class VisitsComponent {
@@ -93,6 +91,12 @@ export class VisitsComponent {
         this.filters = filters;
     }
 
+    public clearFilters() {
+        this.filters = null;
+        this.page = 0;
+        this.setObservable();
+        this.observable.subscribe(visits => this.visits = visits);
+    }
 
     public sort(sortby: string) {
         if (sortby === 'badge.noEscort') {
@@ -104,10 +108,10 @@ export class VisitsComponent {
     public setObservable() {
         switch (this.path) {
             case 'expired':
-                this.observable = this._visitsService.getVisitors('expired', this.page)
+                this.observable = this._visitsService.getVisitors('expired', this.page);
                 break;
             case 'all':
-                this.observable = this._visitsService.getVisitors('all', this.page)
+                this.observable = this._visitsService.getVisitors('all', this.page);
                 break;
             default:
                 this.observable = this._visitsService.getVisitors('active', this.page);
@@ -116,7 +120,7 @@ export class VisitsComponent {
     }
 
     public onScroll(e) {
-        if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 200) {
+        if (!this.filters && (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 200) {
             if (this.visits.length % 30 === 0) {
                 // this.getNextPage();
                 this.page += 1;

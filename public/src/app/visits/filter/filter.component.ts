@@ -10,6 +10,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class FilterComponent implements OnInit {
 
     @Output('filterChange') filterChange: EventEmitter<Filter> = new EventEmitter();
+    @Output('reset') reset: EventEmitter<any> = new EventEmitter();
 
     public form: FormGroup;
     public visitorForm: FormGroup;
