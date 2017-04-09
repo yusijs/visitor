@@ -10,7 +10,7 @@ export class Search {
     public execute(): Promise<Visit[]> {
         let search = this.buildSearch();
         console.log(search);
-        return VisitsCollection.find(search, {sort: { "date": -1 }, limit: 30});
+        return VisitsCollection.find(search, { sort: { "date": -1 }, limit: 30 });
     }
 
     private buildSearch(): Query {
@@ -19,13 +19,19 @@ export class Search {
         for (let key in this._query) {
             switch (key) {
                 case 'visitor':
+                    for (let i in this._query[key]) {
+                        if (this._query[key][i] !== null && this._query[key][i] !== undefined) {
+                            q[key + '.' + i] = new RegExp(this._query[key][i], 'i');
+                        }
+                    }
+                    break;
                 case 'badge':
                 case 'keycard':
-                for (let i in this._query[key]) {
-                    if (this._query[key][i] !== null && this._query[key][i] !== undefined) {
-                        q[key + '.' + i] = new RegExp(this._query[key][i], 'i');
+                    for (let i in this._query[key]) {
+                        if (this._query[key][i] !== null && this._query[key][i] !== undefined) {
+                            q[key + '.' + i] = this._query[key][i];
+                        }
                     }
-                }
                     break;
                 default:
                     if (this._query[key] !== null && this._query[key] !== undefined) {
