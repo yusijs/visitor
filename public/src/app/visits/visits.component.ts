@@ -29,9 +29,17 @@ import { Component, OnInit } from '@angular/core';
                     <td><a [routerLink]="['/visitor', visit.visitor._id]">{{ visit.visitor.name }}</a></td>
                     <td>{{ visit.date | date }}</td>
                     <td>{{ visit.site }}</td>
-                    <td>{{ visit.badge.badge }}</td>
+                    <td>
+                        <span [style.text-decoration]="visit.badge.returned ? 'line-through' : 'initial'">
+                            {{ visit.badge.badge }}
+                        </span>
+                    </td>
                     <td><i class="fa" [class.fa-check]="visit.badge.noEscort"></i></td>
-                    <td>{{ visit.keycard.keycard }}</td>
+                    <td>
+                        <span [style.text-decoration]="visit.keycard.returned ? 'line-through' : 'initial'">
+                            {{ visit.keycard.keycard }}
+                        </span>
+                    </td>
                     <td>{{ visit.visitor.attachments.approved.dateSigned | date }}</td>
                 </tr>
             </tbody>
