@@ -6,7 +6,9 @@
   "license": "MIT",
   "scripts": {
     "start": "concurrently \"tsc -w\" \"cd public && ng build -o dist -w\"",
-    "build": "concurrently \"tsc\" \"cd public && ng build --prod --aot\" "
+    "build": "concurrently \"tsc\" \"cd public && ng build --prod --aot\" ",
+    "postinstall": "cd public && npm install",
+    "fakedata": "tsc && node fakedata.js"
   },
   "dependencies": {
     "body-parser": "^1.17.1",
