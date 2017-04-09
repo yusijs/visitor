@@ -1,11 +1,10 @@
 import { VisitorModel, VisitModel } from './../config/visitors.schema';
 import { Search } from './../utils/search';
-import { VisitsCollection, VisitorCollection, db } from './../config';
+import { VisitsCollection, VisitorCollection } from './../config';
 import { Visit } from './../models/visit';
 
 
 import express = require('express');
-import monk = require('monk');
 import moment = require('moment');
 
 export const router = express.Router();
@@ -39,11 +38,26 @@ router.get('/', (req, res) => {
             break;
     }
 
-    VisitsCollection.find(search, { sort: { "date": -1 }, limit: 30, skip: page * offset }).then((visitors: Visit[]) => {
-        res.status(200).send(visitors);
-    }).catch(err => {
-        res.status(500).send(err);
-    });
+    VisitModel
+        .find(search, null, 
+            { sort: 
+                { 'date': -1 }
+            }
+        )
+        .skip(page*offset)
+        .limit(30)
+        .then(documents => {
+            console.log("Mongoose");
+            res.status(200).send(documents);
+        }).catch(e => {
+            res.status(500).send(e);
+        })
+
+    // VisitsCollection.find(search, { sort: { "date": -1 }, limit: 30, skip: page * offset }).then((visitors: Visit[]) => {
+    //     res.status(200).send(visitors);
+    // }).catch(err => {
+    //     res.status(500).send(err);
+    // });
 });
 
 router.post('/search', (req, res) => {
