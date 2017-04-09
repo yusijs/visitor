@@ -10,16 +10,6 @@ import { Visit } from './../../../../../models/visit';
 @Injectable()
 export class VisitorService {
 
-    public searchTypeahead(name: string): Observable<string[]> {
-        return this._http.get('/api/visits/typeahead/' + name)
-            .map(res => res.json());
-    }
-
-    public getVisitor(id: string): Observable<Visitor> {
-        return this._http.get('/api/visitor/' + id)
-            .map(res => res.json());
-    }
-
     public getVisits(id: string): Observable<Visitor> {
         return this._http.get('/api/visits/visitor/' + id)
             .map(res => res.json());
