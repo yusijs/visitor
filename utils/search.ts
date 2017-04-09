@@ -1,4 +1,4 @@
-import { VisitsCollection } from './../config';
+import { VisitModel } from './../config/visitors.schema';
 import { Visit } from './../models/visit';
 import { Keycard } from './../models/keycard';
 import { Badge } from './../models/badge';
@@ -7,9 +7,11 @@ export class Search {
 
     private _query: Query;
 
-    public execute(): Promise<Visit[]> {
+    public execute(): any { // Returns promise, but mongoose is poorly implemented
         let search = this.buildSearch();
-        return VisitsCollection.find(search, { sort: { "date": -1 }, limit: 100 });
+        return VisitModel.find(search, {
+            sort: { 'date': -1}
+        }).limit(100);
     }
 
     private buildSearch(): Query {
