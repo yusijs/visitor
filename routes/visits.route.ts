@@ -47,7 +47,6 @@ router.get('/', (req, res) => {
         .skip(page * offset)
         .limit(30)
         .then(documents => {
-            console.log("Mongoose");
             res.status(200).send(documents);
         }).catch(e => {
             res.status(500).send(e);
