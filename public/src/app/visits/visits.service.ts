@@ -33,5 +33,10 @@ export class VisitsService {
             .map(res => res.json());
     }
 
+    public addVisit(visit: Visit): Observable<any> {
+        return this._http.post('/api/visits', visit)
+            .map(res => res.json());
+    }
+
     constructor(private _http: Http) { }
 }
